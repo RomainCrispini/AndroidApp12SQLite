@@ -26,10 +26,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // création de la table en langage SQL, à base de concaténation
         String strSQL = "create table T_Scores ("
-                + "idScore integer primary key autoincrement,"
-                + "name text not null,"
-                + "score integer not null,"
-                + "when_ integer not null"
+                + " idScore integer primary key autoincrement,"
+                + " name text not null,"
+                + " score integer not null,"
+                + " when_ integer not null"
                 + ")";
 
         // On lance l'exécution, pour vérifier que cette méthode n'est invoquée qu'une seule fois, on fait in Log
@@ -53,7 +53,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void insertScore(String name, int score){
         name = name.replace("'", "''");
         String strSQL = "insert into T_Scores (name, score, when_) values ('"
-                + name + "' " + score + ", " + new Date().getTime() + ")";
+                + name + "', " + score + ", " + new Date().getTime() + ")";
 
         // Pour envoyer cet ordre SQL dans ma BDD, sur this (c'est le DatabaseManager), on fait un getWritable
         this.getWritableDatabase().execSQL(strSQL);
