@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,9 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         // On créé des données bidons
         databaseManager.insertScore("Bruno", 100);
-        databaseManager.insertScore("Romain", 50);
+        databaseManager.insertScore("Rigolo", 50);
         databaseManager.insertScore("Pipo", 500);
         databaseManager.insertScore("Paulo", 450);
+
+        List<ScoreData> scores = databaseManager.readTop10();
+        for(ScoreData score: scores) scoresView.append( scores.toString() + "\n\n" );
 
         // On ferme la connexion à la BDD
         databaseManager.close();
